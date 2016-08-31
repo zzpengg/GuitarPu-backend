@@ -16,14 +16,18 @@ module.exports = {
 			data: newUser
 		})
 	},
-	
+
 	register: async (req, res) => {
-		let newUser = await User.create(req.body)
-		res.ok({
-			data: newUser
-		})
+		try {
+			let newUser = await User.create(req.body)
+			res.ok({
+				data: newUser
+			})
+		} catch (e) {
+			res.serverError(e);
+		}
 	},
-	
+
 	login: async (req, res) => {
 		try {
 			let result = await User.findOne({
@@ -36,7 +40,7 @@ module.exports = {
 		      iss: result.id,
 		      exp: expires,
 		      name: result.username
-		    }, 'one ok rock');	
+		    }, 'one ok rock');
 		   	res.ok({
 					data: { token }
 				})
@@ -46,13 +50,13 @@ module.exports = {
 		} catch (e) {
 			res.serverError(e);
 		}
-	
+
 	},
-	
+
 	checkAuth: async (req, res) => {
 		if(req.session.uid){
 			res.ok({
-				data: { 
+				data: {
 					uid: req.session.uid,
 					name: req.session.name,
 				}
@@ -60,9 +64,6 @@ module.exports = {
 		}else{
 			res.forbidden()
 		}
-	
+
 	},
 };
-
-
-            

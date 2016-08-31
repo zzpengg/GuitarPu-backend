@@ -8,6 +8,7 @@
 module.exports = {
   attributes: {
     username: {
+      unique: true,
       type: Sequelize.STRING,
       allowNull: false
     },
