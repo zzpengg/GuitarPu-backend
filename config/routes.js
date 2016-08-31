@@ -38,9 +38,9 @@ module.exports.routes = {
 
   'get /api/test': 'UserController.index',
   
-  'post /api/user': 'UserController.register',
-  'post /api/login': 'UserController.login',
-  'get /api/isLogin': 'UserController.checkAuth',
+  'post /api/user': 'UserController.register',    //註冊
+  'post /api/login': 'UserController.login',      //登入
+  'get /api/isLogin': 'UserController.checkAuth', //是否登入,
   
   'get /api/song': 'SongController.findALL',
   'get /api/song/:id': 'SongController.findOne',
