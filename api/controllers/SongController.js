@@ -46,4 +46,19 @@ module.exports = {
 			res.serverError(e);
 		}
 	},
+	
+	delete: async (req, res) => {
+		try {
+			let result = await Song.delete({
+				where: {
+					id: req.params.id
+				},
+			});
+			res.ok({
+				data: result
+			});
+		} catch (e) {
+			res.serverError(e);
+		}
+	},
 };
