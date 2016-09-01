@@ -35,6 +35,7 @@ module.exports = {
         allowNull: false
       }
     });
+    Song.hasMany(Like);
   },
   options: {
     classMethods: {},

@@ -42,9 +42,13 @@ module.exports.routes = {
   'post /api/login': 'UserController.login',      //登入
   'get /api/isLogin': 'UserController.checkAuth', //是否登入,
   
-  'get /api/song': 'SongController.findALL',
+  'get /api/song': 'SongController.findAll',
+  'get /api/song/me': 'SongController.findAllOfMe',
   'get /api/song/:id': 'SongController.findOne',
   'post /api/song': 'SongController.create',
+  
+  'post /api/like': 'LikeController.like',
+  'delete /api/like': 'LikeController.unlike',
 
   /***************************************************************************
   *                                                                          *

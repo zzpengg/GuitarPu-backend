@@ -9,10 +9,26 @@ module.exports = {
 	findAll: async (req, res) => {
 		try {
 			let result = await Song.findAll({
-				include: [User] 
+				include: [User, Like] 
 			});
 			res.ok({
 				data: result
+			});
+		} catch (e) {
+			res.serverError(e);
+		}
+	},
+	
+	findAllOfMe: async (req, res) => {
+		try {
+			let result = await User.findOne({
+				where: {
+					id: req.session.uid,
+				},
+				include: [Song] 
+			});
+			res.ok({
+				data: result.Songs
 			});
 		} catch (e) {
 			res.serverError(e);

@@ -7,19 +7,10 @@
 
 module.exports = {
   attributes: {
-    userid: {
-      unique: true,
-      type: Sequelize.STRING,
-      allowNull: false
-    },
-    songid: {
-      type: Sequelize.STRING,
-      allowNull: false
-    }
   },
   associations: function() {
-    Like.hasMany(Song);
-    Like.hasMany(User);
+    Like.belongsTo(Song);
+    Like.belongsTo(User);
   },
   options: {
     classMethods: {},
