@@ -37,6 +37,7 @@ module.exports = {
 	
 	create: async (req, res) => {
 		try {
+			req.body.UserId = req.session.uid;
 			let result = await Song.create(req.body);
 			res.ok({
 				data: result

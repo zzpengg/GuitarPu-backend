@@ -9,7 +9,7 @@ const jwt = require('jwt-simple');
 module.exports = {
 	index: async (req, res) => {
 		let newUser = await User.create({
-			email: "123@456",
+			username: "123@456",
 			password: '789'
 		})
 		res.ok({
@@ -42,7 +42,11 @@ module.exports = {
 		      name: result.username
 		    }, 'one ok rock');
 		   	res.ok({
-					data: { token }
+					data: { 
+						token,
+						name: result.username,
+						uid: result.id,
+					}
 				})
 			}else {
 		  	res.forbidden()

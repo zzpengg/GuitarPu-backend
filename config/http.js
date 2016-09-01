@@ -60,8 +60,6 @@ module.exports.http = {
     checkTokenAuth: function (req, res, next) {
       if (req.headers['x-access-token']) {
         var decoded = jwt.decode(req.headers['x-access-token'], 'one ok rock');
-        console.log('======>>>>');
-        console.log(decoded);
         if (decoded.exp < Date.now()) {
           console.log('Access token has expired');
           return next();
