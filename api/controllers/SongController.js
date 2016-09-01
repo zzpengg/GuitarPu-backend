@@ -9,7 +9,19 @@ module.exports = {
 	findAll: async (req, res) => {
 		try {
 			let result = await Song.findAll({
-				include: [User, Like] 
+				include: [User, Like],
+				order:  [
+         ['createdAt', 'DESC'],
+        ],
+			});
+			result.forEach((e) => {
+				let isLike = false;
+				e.dataValues.Likes.forEach((e) => {
+					if (e.UserId === req.session.uid){
+						isLike = true;
+					}
+				});
+				e.dataValues.isLike = isLike;
 			});
 			res.ok({
 				data: result
@@ -29,6 +41,22 @@ module.exports = {
 			});
 			res.ok({
 				data: result.Songs
+			});
+		} catch (e) {
+			res.serverError(e);
+		}
+	},
+	
+ 	findILikes: async (req, res) => {
+		try {
+			let result = await Like.findAll({
+				where:{
+					UserId: req.session.uid,
+				},
+				include: [Song] 
+			});
+			res.ok({
+				data: result
 			});
 		} catch (e) {
 			res.serverError(e);

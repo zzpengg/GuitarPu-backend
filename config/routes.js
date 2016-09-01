@@ -44,6 +44,7 @@ module.exports.routes = {
   
   'get /api/song': 'SongController.findAll',
   'get /api/song/me': 'SongController.findAllOfMe',
+  'get /api/song/like': 'SongController.findILikes',
   'get /api/song/:id': 'SongController.findOne',
   'post /api/song': 'SongController.create',
   
